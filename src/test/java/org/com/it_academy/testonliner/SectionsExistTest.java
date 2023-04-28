@@ -7,6 +7,8 @@ import org.com.it_academy.onliner.pageobject.ProductPage;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.Arrays;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SectionsExistTest extends BaseTest {
@@ -14,14 +16,14 @@ public class SectionsExistTest extends BaseTest {
 
     @BeforeClass
     public void navigationToHomePage() {
-        DriverManager.getWebDriver().get("https://www.onliner.by/");
+     getWebDriver().get("https://www.onliner.by/");
     }
 
     @Test
     public void testLinkExist() {
         header
                 .clickOnMainNavigationLink("Каталог");
-        assertThat(new CatalogPage().getClassifierLinkList())
+           assertThat(new CatalogPage().getClassifierLinkList())
                 .containsAll(Arrays.asList("Электроника", "Компьютеры и сети",
                         "Бытовая техника", "На каждый день", "Стройка и ремонт",
                         "Дом и сад", "Авто и мото", "Красота и спорт", "Детям и мамам"));
