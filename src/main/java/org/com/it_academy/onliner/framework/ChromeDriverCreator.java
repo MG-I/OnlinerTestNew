@@ -7,6 +7,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 public class ChromeDriverCreator implements WebDriverCreator<RemoteWebDriver> {
     @Override
     public RemoteWebDriver create() {
-        return new ChromeDriver(new ChromeOptions().addArguments("--remote-allow-origin=*"));
+             return new ChromeDriver(new ChromeOptions().addArguments("start-maximized"));
     }
 }

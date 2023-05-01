@@ -1,48 +1,57 @@
 package org.com.it_academy.onliner.pageobject;
 
-import org.openqa.selenium.By;
-import static java.lang.String.format;
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$x;
+import static java.time.Duration.ofSeconds;
+
 public class ProductPage extends BasePage {
-    private static final String PRODUCT_PAGE_TITLE_XPATH_PATTERN =
-            "//*[contains(@class, 'header_title') and contains(text(), '%s')]";
-    private static final String PRODUCT_FULL_NAME =
-            "//div[contains(@class, 'schema-product__group')]//span[contains(@data-bind,'product.full_name')]";
-    private static final String PRODUCT_DESCRIPTION =
-            "//div[contains(@class, 'schema-product__group')]//span[contains(@data-bind,'product.description')]";
-    private static final String PRODUCT_RATING =
-            "//div[contains(@class, 'schema-product__group')]//span[contains(@data-bind,'reviews.rating')]";
-    private static final String PRODUCT_PRICE =
-            "//div[contains(@class, 'schema-product__group')]//a[contains(@class,'schema-product__price-value ')]";
-    private static final String PRODUCT_IMAGE =
-            "//div[contains(@class, 'schema-product__group')]//a[contains(@class,'js-product-image-link')]";
-    private static final String PRODUCT_CONTROL =
-            "//div[contains(@class, 'schema-product__group')]//label[contains(@class,'schema-product__control')]";
-    public boolean isProductFullNameDisplayed() {
-        return isElementDisplayed(By.xpath(format(PRODUCT_FULL_NAME)));
+    private final SelenideElement productFullName
+            = $x("//div[contains(@class, 'schema-product__group')]//span[contains(@data-bind,'product.full_name')]");
+    private final SelenideElement productDescription
+            = $x("//div[contains(@class, 'schema-product__group')]//span[contains(@data-bind,'product.description')]");
+    private final SelenideElement productRating
+            = $x("//div[contains(@class, 'schema-product__group')]//span[contains(@data-bind,'reviews.rating')]");
+    private final SelenideElement productPrise
+            = $x("//div[contains(@class, 'schema-product__group')]//a[contains(@class,'schema-product__price-value ')]");
+    private final SelenideElement productImage
+            = $x("//div[contains(@class, 'schema-product__group')]//a[contains(@class,'js-product-image-link')]");
+    private final SelenideElement productControl
+            = $x("//div[contains(@class, 'schema-product__group')]//label[contains(@class,'schema-product__control')]");
+
+    public ProductPage verifyProductFullNameDisplayed() {
+        productFullName
+                .shouldBe(visible, ofSeconds(30));
+        return new ProductPage();
     }
-    public boolean isProductRatingDisplayed() {
-        return isElementDisplayed(By.xpath(format(PRODUCT_RATING)));
+    public ProductPage verifyProductRatingDisplayed() {
+        productRating
+                .shouldBe(visible, ofSeconds(30));
+        return new ProductPage();
     }
-    public boolean isProductDescriptionDisplayed() {
-        return isElementDisplayed(By.xpath(format(PRODUCT_DESCRIPTION)));
+    public ProductPage verifyProductDescriptionDisplayed() {
+        productDescription
+                .shouldBe(visible, ofSeconds(30));
+        return new ProductPage();
     }
-    public boolean isProductPriceDisplayed() {
-        return isElementDisplayed(By.xpath(format(PRODUCT_PRICE)));
+    public ProductPage verifyProductPriceDisplayed() {
+        productPrise
+                .shouldBe(visible, ofSeconds(30));
+        return new ProductPage();
     }
-    public boolean isProductImageDisplayed() {
-        return isElementDisplayed(By.xpath(format(PRODUCT_IMAGE)));
+    public ProductPage verifyProductImageDisplayed() {
+        productImage.shouldBe(visible, ofSeconds(30));
+        return new ProductPage();
     }
-    public boolean isProductControlDisplayed() {
-        return isElementDisplayed(By.xpath(format(PRODUCT_CONTROL)));
+    public ProductPage verifyProductControlDisplayed() {
+        productControl
+                .shouldBe(visible, ofSeconds(30));
+        return new ProductPage();
     }
-    public boolean isAllElementsForProductIsDisplayed() {
-        boolean fullNameIsDisplayed = isProductFullNameDisplayed();
-        boolean ratingIsDisplayed = isProductRatingDisplayed();
-        boolean descriptionIsDisplayed = isProductDescriptionDisplayed();
-        boolean priceIsDisplayed = isProductPriceDisplayed();
-        boolean imageIsDisplayed = isProductImageDisplayed();
-        boolean controlIsDisplayed = isProductControlDisplayed();
-        return fullNameIsDisplayed && ratingIsDisplayed && descriptionIsDisplayed && priceIsDisplayed &&
-                imageIsDisplayed && controlIsDisplayed;
+    public ProductPage verifyProductGroupDisplayed() {
+        productControl
+                .shouldBe(visible, ofSeconds(30));
+        return new ProductPage();
     }
 }

@@ -5,7 +5,6 @@ import java.util.Arrays;
 public enum Driver {
     CHROME("chrome", new ChromeDriverCreator()),
     EDGE("edge", new EdgeDriverCreator());
-
     private String driverType;
     private WebDriverCreator webDriverCreator;
 

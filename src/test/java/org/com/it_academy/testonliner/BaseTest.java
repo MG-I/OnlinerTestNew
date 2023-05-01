@@ -2,19 +2,16 @@ package org.com.it_academy.testonliner;
 
 import com.codeborne.selenide.Selenide;
 import org.com.it_academy.onliner.framework.DriverManager;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
-    @BeforeClass
-    public  void init(){
-       DriverManager.initDriver(System.getProperty("driverType"));
-     //   DriverManager.initDriver("chrome");
+    @BeforeMethod
+    public void init() {
+        DriverManager.initDriver();
     }
-
-   @AfterTest
+    @AfterMethod
     public void closeBrowser() {
-       Selenide.closeWebDriver();
-   }
+        Selenide.closeWebDriver();
+    }
 }
