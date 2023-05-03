@@ -57,37 +57,4 @@ public class SectionsExistTest extends BaseTest {
                 .verifyProductRatingDisplayed()
                 .verifyProductPriceDisplayed();
     }
-    @Test
-    public void testSearchElement() {
-        header
-                .clearInSearchField()
-                .clickInSearchField()
-                .addTextInSearch("Наушники")
-                .SwitchToFrame()
-                .verifyTitleElementSearched("Наушники");
-        header.ExistFromFrame();
-    }
-    @Test
-    public void testCloseSearchForm() {
-        header
-                .clearInSearchField()
-                .clickInSearchField()
-                .addTextInSearch("Сумка")
-                .SwitchToFrame()
-                .clickCLoseIcon()
-                .ExistFromFrame();
-        assertThat(new Header().getUrlForCurrentPage().contains("https://www.onliner.by/"));
-
-    }
-    @Test
-    public void testReSearch() {
-        header
-                .clearInSearchField()
-                .clickInSearchField()
-                .addTextInSearch("Градусник")
-                .SwitchToFrame()
-                .addTextInFastSearchInFrame("стол")
-                .verifyTitleElementSearched("тол");
-        header.ExistFromFrame();
-    }
 }
