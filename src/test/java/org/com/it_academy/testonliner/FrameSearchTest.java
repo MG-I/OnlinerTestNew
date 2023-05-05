@@ -1,5 +1,9 @@
 package org.com.it_academy.testonliner;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.com.it_academy.onliner.pageobject.Header;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,6 +31,9 @@ public class FrameSearchTest extends BaseTest {
     }
 
     @Test
+    @Description ("Checking the operation of the close icon of the search window")
+    @Story("SF125")
+    @Severity(SeverityLevel.CRITICAL)
     public void testCloseSearchForm() {
         header
                 .clearInSearchField()

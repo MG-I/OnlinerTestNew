@@ -2,6 +2,7 @@ package org.com.it_academy.onliner.pageobject;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.and;
 import static com.codeborne.selenide.Condition.enabled;
@@ -23,16 +24,19 @@ public class Header extends BasePage {
                 .click();
         return new CatalogPage();
     }
+    @Step("Click on search field")
     public Header clickInSearchField() {
         fastSearch.shouldBe(visible, ofSeconds(10))
                 .click();
         return this;
     }
+    @Step("Clear search field")
     public Header clearInSearchField() {
         fastSearch.shouldBe(visible, ofSeconds(10))
                 .clear();
         return this;
     }
+    @Step("Add {text} in search field")
     public FrameSearch addTextInSearch(String text) {
         fastSearch.clear();
         fastSearch.sendKeys(text);

@@ -1,6 +1,7 @@
 package org.com.it_academy.onliner.pageobject;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
@@ -17,16 +18,19 @@ public class FrameSearch extends BasePage {
         switchTo().frame(frame);
         return this;
     }
+    @Step("Verify correct search")
     public void verifyTitleElementSearched(String text) {
         $x(format(TITLE_SEARCHED_ELEMENTS_PATTERN, text))
                 .shouldBe(visible, ofSeconds(30));
     }
+    @Step("Click on close icon ")
     public Header clickCLoseIcon() {
        searchCloseIconForFrame
                 .shouldBe(visible, ofSeconds(30))
                 .click();
         return new Header();
     }
+    @Step("Add {text} in search field")
     public FrameSearch addTextInFastSearchInFrame(String text) {
         fastSearchInFrame.clear();
         fastSearchInFrame.sendKeys(text);
