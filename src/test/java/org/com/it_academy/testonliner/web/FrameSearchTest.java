@@ -1,10 +1,11 @@
-package org.com.it_academy.testonliner;
+package org.com.it_academy.testonliner.web;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.com.it_academy.onliner.pageobject.Header;
+import org.com.it_academy.onliner.pageobject.OnlinerURL;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,7 +17,7 @@ public class FrameSearchTest extends BaseTest {
 
     @BeforeMethod
     public void navigationToHomePage() {
-        getWebDriver().get("https://www.onliner.by/");
+        getWebDriver().get(OnlinerURL.ONLINER_HOME);
     }
 
     @Test
@@ -25,13 +26,12 @@ public class FrameSearchTest extends BaseTest {
                 .clearInSearchField()
                 .clickInSearchField()
                 .addTextInSearch("Наушники")
-                .SwitchToFrame()
+                .switchToFrame()
                 .verifyTitleElementSearched("Наушники");
-        header.ExistFromFrame();
     }
 
     @Test
-    @Description ("Checking the operation of the close icon of the search window")
+    @Description("Checking the operation of the close icon of the search window")
     @Story("SF125")
     @Severity(SeverityLevel.CRITICAL)
     public void testCloseSearchForm() {
@@ -39,9 +39,8 @@ public class FrameSearchTest extends BaseTest {
                 .clearInSearchField()
                 .clickInSearchField()
                 .addTextInSearch("Сумка")
-                .SwitchToFrame()
-                .clickCLoseIcon()
-                .ExistFromFrame();
+                .switchToFrame()
+                .clickCLoseIcon();
         assertThat(new Header().getUrlForCurrentPage().contains("https://www.onliner.by/"));
     }
 
@@ -51,9 +50,8 @@ public class FrameSearchTest extends BaseTest {
                 .clearInSearchField()
                 .clickInSearchField()
                 .addTextInSearch("Градусник")
-                .SwitchToFrame()
+                .switchToFrame()
                 .addTextInFastSearchInFrame("стол")
                 .verifyTitleElementSearched("тол");
-        header.ExistFromFrame();
     }
 }

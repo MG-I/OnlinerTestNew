@@ -23,32 +23,38 @@ public class ProductPage extends BasePage {
     public ProductPage verifyProductFullNameDisplayed() {
         productFullName
                 .shouldBe(visible, ofSeconds(30));
-        return new ProductPage();
+        return this;
     }
+
     public ProductPage verifyProductRatingDisplayed() {
         productRating
                 .shouldBe(visible, ofSeconds(30));
-        return new ProductPage();
+        return this;
     }
+
     public ProductPage verifyProductDescriptionDisplayed() {
         productDescription
                 .shouldBe(visible, ofSeconds(30));
-        return new ProductPage();
+        return this;
     }
+
     public ProductPage verifyProductPriceDisplayed() {
         productPrise
                 .shouldBe(visible, ofSeconds(30));
-        return new ProductPage();
+        return this;
     }
+
     public ProductPage verifyProductImageDisplayed() {
         productImage.shouldBe(visible, ofSeconds(30));
-        return new ProductPage();
+        return this;
     }
+
     public ProductPage verifyProductControlDisplayed() {
         productControl
                 .shouldBe(visible, ofSeconds(30));
         return new ProductPage();
     }
+
     public ProductPage verifyProductGroupDisplayed() {
         productControl
                 .shouldBe(visible, ofSeconds(30));
