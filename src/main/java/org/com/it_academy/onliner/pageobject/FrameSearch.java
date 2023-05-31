@@ -15,6 +15,7 @@ public class FrameSearch extends BasePage {
     private final SelenideElement frame = $x("//iframe[@class = 'modal-iframe']");
     private final SelenideElement fastSearchInFrame = $x("//input[contains(@class, 'search__input')]");
 
+    @Step("Go to Frame")
     public FrameSearch switchToFrame() {
         switchTo().frame(frame);
         return this;

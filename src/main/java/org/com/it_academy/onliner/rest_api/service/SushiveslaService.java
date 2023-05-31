@@ -2,6 +2,8 @@ package org.com.it_academy.onliner.rest_api.service;
 
 import com.google.common.collect.ImmutableMap;
 import org.com.it_academy.onliner.rest_api.model.SushiveslaSearch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,7 @@ import static org.com.it_academy.onliner.rest_api.endpoints.OnlinerEndpoints.get
 import static org.com.it_academy.onliner.rest_api.util.GetRequestUtils.makeGetRequestAndGetResponseBody;
 
 public class SushiveslaService {
+    protected static final Logger LOG = LoggerFactory.getLogger(SushiveslaService.class);
 
     public List<SushiveslaSearch> getSushiveslaSearch() {
         return makeGetRequestAndGetResponseBody(getCatalogSearchEndpoint(), configureHeaders(), null)
@@ -19,16 +22,20 @@ public class SushiveslaService {
     }
 
     public List<String> getSushiveslaSearchWithParams(String param) {
-        return makeGetRequestAndGetResponseBody(getCatalogSearchEndpoint(), configureHeaders(), configureParams(param))
+        List<String> list = makeGetRequestAndGetResponseBody(getCatalogSearchEndpoint(), configureHeaders(), configureParams(param))
                 .jsonPath()
                 .getList("products.name_prefix", String.class);
+        LOG.warn(" List response {}", list);
+        return list;
     }
 
     public List<String> getSushiveslaSearchName() {
-        return getSushiveslaSearch()
+        List<String> list = getSushiveslaSearch()
                 .stream()
                 .map(name -> name.getName())
                 .collect(Collectors.toList());
+        LOG.warn(" List response {}", list);
+        return list;
     }
 
     private static Map<String, Object> configureHeaders() {
